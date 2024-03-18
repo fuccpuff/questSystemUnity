@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8e3deef5769a214ba277dd867a316b9, type: 3}
-  m_Name: EnterHouse
+  m_Name: New Quest 20240318130722
   m_EditorClassIdentifier: 
-  questId: houseEnter
-  title: enter house
-  description: 1
-  targetObjectName: testTrigger
+  questId: New Quest _2024-03-18-13-07-22
+  title: New Quest 20240318130722
+  description: 
+  targetObjectName: 
