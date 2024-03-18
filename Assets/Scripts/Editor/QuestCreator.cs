@@ -7,10 +7,8 @@ public class QuestCreator
 
     public static void CreateNewQuest(string questName)
     {
-        // Убедитесь, что путь к папке 'Resources/Quests' существует
         if (!AssetDatabase.IsValidFolder($"{questResourcesPath}"))
         {
-            // 'CreateFolder' принимает относительные пути от родительской папки
             AssetDatabase.CreateFolder("Assets/Resources", "Quests");
         }
 

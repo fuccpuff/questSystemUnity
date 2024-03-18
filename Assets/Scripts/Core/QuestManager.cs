@@ -5,7 +5,7 @@ using System.Linq;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
-    public List<Quest> quests = new List<Quest>(); // Список для хранения активных квестов
+    public List<Quest> quests = new List<Quest>();
 
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class QuestManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadQuests(); // Загрузка QuestObject как Quest при старте
+            LoadQuests();
         }
         else
         {
@@ -27,11 +27,9 @@ public class QuestManager : MonoBehaviour
         var questObjects = Resources.LoadAll<QuestObject>("Quests");
         foreach (var questObject in questObjects)
         {
-            Debug.Log($"Loading quest: {questObject.questId}");
-            quests.Add(new Quest(questObject)); // Создание квеста из QuestObject
+            quests.Add(new Quest(questObject));
         }
     }
-
 
     public Quest GetQuest(string questId)
     {
@@ -40,22 +38,20 @@ public class QuestManager : MonoBehaviour
 
     public void ActivateQuest(string questId)
     {
-        Quest quest = quests.FirstOrDefault(q => q.questId == questId);
+        Quest quest = GetQuest(questId);
         if (quest != null && !quest.isActive)
         {
             quest.isActive = true;
-            // Обновляем UI сразу после изменения статуса квеста
             QuestUIManager.instance.UpdateQuestDisplay();
         }
     }
 
     public void CompleteQuest(string questId)
     {
-        Quest quest = quests.FirstOrDefault(q => q.questId == questId);
+        Quest quest = GetQuest(questId);
         if (quest != null && !quest.isCompleted)
         {
             quest.isCompleted = true;
-            // Обновляем UI сразу после изменения статуса квеста
             QuestUIManager.instance.UpdateQuestDisplay();
         }
     }
@@ -64,8 +60,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach (var quest in quests)
         {
-            quest.isActive = true; // Установите в true для всех квестов для тестирования
+            quest.isActive = true;
         }
     }
-
 }

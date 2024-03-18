@@ -1,21 +1,20 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Quest
+public class Quest : ScriptableObject
 {
     public string questId;
     public string title;
     public string description;
     public bool isActive = false;
     public bool isCompleted = false;
+    public GameObject targetObject;
 
-    // Конструктор для создания квеста из QuestObject
     public Quest(QuestObject questObject)
     {
-        this.questId = questObject.questId;
-        this.title = questObject.title;
-        this.description = questObject.description;
+        questId = questObject.questId;
+        title = questObject.title;
+        description = questObject.description;
+        targetObject = questObject.targetObject; 
     }
 
     public void Activate()

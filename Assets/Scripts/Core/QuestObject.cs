@@ -6,5 +6,5 @@ public class QuestObject : ScriptableObject
     public string questId;
     public string title;
     public string description;
-    // Можете добавить другие поля, такие как требования квеста
+    public GameObject targetObject;
 }

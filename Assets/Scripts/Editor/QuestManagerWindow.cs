@@ -15,7 +15,6 @@ public class QuestManagerWindow : EditorWindow
     {
         GUILayout.Label("Quest Manager", EditorStyles.boldLabel);
 
-        // Текстовое поле для ввода имени нового квеста
         newQuestName = EditorGUILayout.TextField("New Quest Name", newQuestName);
 
         if (GUILayout.Button("Create New Quest"))
@@ -23,14 +22,12 @@ public class QuestManagerWindow : EditorWindow
             if (!string.IsNullOrEmpty(newQuestName))
             {
                 QuestCreator.CreateNewQuest(newQuestName);
-                newQuestName = ""; // Опционально: очистить поле после создания квеста
+                newQuestName = "";
             }
             else
             {
                 EditorUtility.DisplayDialog("Quest Creation Failed", "Quest name cannot be empty.", "OK");
             }
         }
-
-        // Здесь может быть реализация для отображения и редактирования существующих квестов
     }
 }
