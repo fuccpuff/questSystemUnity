@@ -7,7 +7,7 @@ public class QuestObjectEditor : Editor
     SerializedProperty questIdProp;
     SerializedProperty titleProp;
     SerializedProperty descriptionProp;
-    SerializedProperty targetObjectProp;
+    SerializedProperty targetObjectNameProp;
 
     string[] questTypes = new string[] { "Выберите тип", "Сбор предметов", "Исследование местности" };
     int selectedQuestTypeIndex = 0;
@@ -17,7 +17,7 @@ public class QuestObjectEditor : Editor
         questIdProp = serializedObject.FindProperty("questId");
         titleProp = serializedObject.FindProperty("title");
         descriptionProp = serializedObject.FindProperty("description");
-        targetObjectProp = serializedObject.FindProperty("targetObject");
+        targetObjectNameProp = serializedObject.FindProperty("targetObjectName");
     }
 
     public override void OnInspectorGUI()
@@ -27,14 +27,13 @@ public class QuestObjectEditor : Editor
         EditorGUILayout.PropertyField(questIdProp);
         EditorGUILayout.PropertyField(titleProp);
         EditorGUILayout.PropertyField(descriptionProp);
+        EditorGUILayout.PropertyField(targetObjectNameProp, new GUIContent("Target Object Name"));
 
         selectedQuestTypeIndex = EditorGUILayout.Popup("Quest Type", selectedQuestTypeIndex, questTypes);
         if (selectedQuestTypeIndex != 0)
         {
             ApplyQuestTypeTemplate(selectedQuestTypeIndex);
         }
-
-        EditorGUILayout.PropertyField(targetObjectProp, new GUIContent("Quest Target Transform"));
 
         serializedObject.ApplyModifiedProperties();
 
@@ -81,5 +80,4 @@ public class QuestObjectEditor : Editor
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
-
 }

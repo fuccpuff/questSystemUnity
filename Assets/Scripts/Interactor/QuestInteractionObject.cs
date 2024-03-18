@@ -3,12 +3,11 @@ using UnityEngine;
 public class QuestInteractionObject : MonoBehaviour
 {
     public string questId;
-
+    public string targetObjectName;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameObject.name == targetObjectName)
         {
-            // Активация или завершение квеста
             QuestManager.instance.CompleteQuest(questId);
         }
     }

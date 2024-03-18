@@ -48,19 +48,26 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteQuest(string questId)
     {
-        Quest quest = GetQuest(questId);
+        Quest quest = quests.FirstOrDefault(q => q.questId == questId);
         if (quest != null && !quest.isCompleted)
         {
             quest.isCompleted = true;
             QuestUIManager.instance.UpdateQuestDisplay();
+            Debug.Log($"Quest '{quest.title}' completed!");
         }
     }
 
-    public void ActivateAllQuests()
+    public void CheckQuestCompletion(QuestObject questObject)
     {
-        foreach (var quest in quests)
+        GameObject targetObject = GameObject.Find(questObject.targetObjectName);
+        if (targetObject != null)
         {
-            quest.isActive = true;
+            targetObject.SetActive(false);
+            CompleteQuest(questObject.questId);
+        }
+        else
+        {
+            Debug.LogWarning($"Target object '{questObject.targetObjectName}' not found.");
         }
     }
 }

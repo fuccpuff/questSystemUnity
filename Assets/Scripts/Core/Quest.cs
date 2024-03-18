@@ -1,20 +1,21 @@
 using UnityEngine;
 
-public class Quest : ScriptableObject
+[System.Serializable]
+public class Quest
 {
     public string questId;
     public string title;
     public string description;
     public bool isActive = false;
     public bool isCompleted = false;
-    public GameObject targetObject;
+    public string targetObjectName;
 
     public Quest(QuestObject questObject)
     {
         questId = questObject.questId;
         title = questObject.title;
         description = questObject.description;
-        targetObject = questObject.targetObject; 
+        targetObjectName = questObject.targetObjectName;
     }
 
     public void Activate()

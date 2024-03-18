@@ -6,5 +6,5 @@ public class QuestObject : ScriptableObject
     public string questId;
     public string title;
     public string description;
-    public GameObject targetObject;
+    public string targetObjectName;
 }
